@@ -35,21 +35,21 @@ Dependencies:
 **I highly recommend to use Ubuntu 16.04 LTS.**
 
 Install Golang 1.8 
-sudo apt-get install software-properties-common
-sudo add-apt-repository ppa:longsleep/golang-backports
-sudo apt-get update
-sudo apt-get install golang-go
+    sudo apt-get install software-properties-common
+    sudo add-apt-repository ppa:longsleep/golang-backports
+    sudo apt-get update
+    sudo apt-get install golang-go
 
 First install  [go-ethereum](https://github.com/ethereum/go-ethereum/wiki/Installation-Instructions-for-Ubuntu).
 
-sudo apt-get install software-properties-common
-sudo add-apt-repository -y ppa:ethereum/ethereum
-sudo apt-get update
-sudo apt-get install -y ethereum build-essential
+    sudo apt-get install software-properties-common
+    sudo add-apt-repository -y ppa:ethereum/ethereum
+    sudo apt-get update
+    sudo apt-get install -y ethereum build-essential
 
-geth account new
+    geth account new
 
-echo "Type : geth and enter check services"
+    echo "Type : geth and enter check services"
 
 
 Clone & compile:
