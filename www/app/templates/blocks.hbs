@@ -1,0 +1,23 @@
+<div class="jumbotron">
+  <div class="container">
+    
+    <h3>Thông số các tài nguyên đã tìm được</h3>
+  </div>
+</div>
+<div class="container">
+  {{#if model.luck}}
+    {{partial "luck"}}
+  {{/if}}
+  <ul class="nav nav-tabs">
+    {{#active-li currentWhen='blocks.index' role='presentation'}}
+      {{#link-to 'blocks.index'}}Block đã tìm <span class="badge alert-success">{{format-number model.maturedTotal}}</span>{{/link-to}}
+    {{/active-li}}
+    {{#active-li currentWhen='blocks.immature' role='presentation'}}
+      {{#link-to 'blocks.immature'}}Đã phân giải <span class="badge alert-success">{{format-number model.immatureTotal}}</span>{{/link-to}}
+    {{/active-li}}
+    {{#active-li currentWhen='blocks.pending' role='presentation'}}
+      {{#link-to 'blocks.pending'}}Mới tìm thấy <span class="badge alert-info">{{format-number model.candidatesTotal}}</span>{{/link-to}}
+    {{/active-li}}
+  </ul>
+  {{outlet}}
+</div>

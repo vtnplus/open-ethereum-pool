@@ -1,0 +1,59 @@
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <h1 style="font-size: 24px" class="hidden-xs">
+          <strong>{{config.SiteName}}</strong>
+        </h1>
+        <strong>Số thanh toán tối thiểu : {{config.PayoutThreshold}}</strong>, <br>Hệ thống phân giải thanh toán tự động trong 2h.<br/>
+        <a href="http://www.elementrem.info/" target="_bank">Network</a> | <a href="https://www.facebook.com/groups/1071050689694143/" target="_bank">Facebook</a>.
+      </div>
+      <div class="col-md-3 stats">
+        <div><i class="fa fa-users"></i> Số người: <span id="poolHashrate">{{format-number stats.model.minersTotal}}</span></div>
+        <div><i class="fa fa-tachometer"></i> Tổng Hash Rate: <span id="poolHashrate">{{format-hashrate stats.model.hashrate}}</span></div>
+        <div><i class="fa fa-money"></i> Phí : <span id="poolFee" class="label label-success">{{config.PoolFee}}</span></div>
+        {{#if stats.model.stats.lastBlockFound}}
+        <div><i class="fa fa-clock-o"></i> Block gần nhất : <span>{{format-relative (seconds-to-ms stats.model.stats.lastBlockFound)}}</span></div>
+        {{/if}}
+      </div>
+      <div class="col-md-4 stats">
+        <div><i class="fa fa-unlock-alt"></i> Độ khó : <span>{{with-metric-prefix stats.difficulty}}</span></div>
+        <div><i class="fa fa-tachometer"></i> Hash Rate thế giới: <span>{{format-hashrate stats.hashrate}}</span></div>
+        <div><i class="fa fa-bars"></i> Độ lớn Blockchain: <span>{{format-number stats.height}}</span></div>
+        <div><i class="fa fa-clock-o"></i> Mức độ tìm: <span>{{format-number stats.roundVariance style='percent'}}</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="stats">
+    <h4>Nhập địa chỉ ví để kiểm tra</h4>
+    <div class="input-group">
+      {{input value=cachedLogin class="form-control" placeholder="Enter Your Ethereum Address"}}
+      <span class="input-group-btn">
+        <button class="btn btn-primary" type="button" {{action 'lookup' cachedLogin}}>
+          <span style="display: inline;"><i class="fa fa-search"></i> Thực hiện</span>
+        </button>
+      </span>
+    </div>
+  </div>
+  <div>
+    <hr/>
+    <div class="note note-info text-left">
+      <h3>Hướng dẫn</h3>
+      <strong>Giao thức</strong><br>
+      Stratum: stratum+tcp://{{config.StratumHost}}:{{config.StratumPort}}<br>
+      Getwork: {{config.HttpHost}}:{{config.HttpPort}}<br>
+
+
+      <strong>Phần mềm</strong><br>
+      Với Claymore: mở file start.bat thay tất cả nội dung như sau<br>
+      start EthDcrMiner64.exe -epool stratum+tcp://{{config.StratumHost}}:{{config.StratumPort}} -ewal YOUR_DAXX_ADDRESS -epsw RIG_1 -esm 0 -allcoins 1 -allpools 1<br><br>
+
+      Với Ethminer: ethminer --farm-recheck 200 -U -F {{config.HttpHost}}:{{config.HttpPort}}/YOUR_DAXX_ADDRESS/rigname
+
+      
+    </div>
+  </div>
+</div>
